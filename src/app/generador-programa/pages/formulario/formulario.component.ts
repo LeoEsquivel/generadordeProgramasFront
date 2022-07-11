@@ -81,10 +81,10 @@ export class FormularioComponent {
   }
 
 
-  obtenerInformacion( chapter: string, name: string ) {
-    this.activeChapter = chapter
-    this.selectedChapter = name;
-    this.gpService.getProgramData( chapter )
+  obtenerInformacion( chapterInfo: string[]) {
+    this.selectedChapter = chapterInfo[0];
+    this.activeChapter = chapterInfo[1]
+    this.gpService.getProgramData( chapterInfo[0] )
       .subscribe({
         next: ( programa ) => {
           if ( programa ) {

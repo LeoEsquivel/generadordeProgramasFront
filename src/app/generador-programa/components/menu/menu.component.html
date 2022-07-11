@@ -1,0 +1,15 @@
+<div class="row mt-3">
+  <div class="col">
+    <ul class="list-group">
+      <li *ngFor="let menu of menuEPub; let i=index"
+          (click)="getChapter(menu._Menu__route!, menu._Menu__name!)"
+          [ngClass]="activeChapter === menu._Menu__route ? 'list-group-item active' : 'list-group-item' "
+          class="list-group-item"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseThree"
+          aria-expanded="false">
+        {{ menu._Menu__name }}
+      </li>
+    </ul>
+  </div>
+</div>
