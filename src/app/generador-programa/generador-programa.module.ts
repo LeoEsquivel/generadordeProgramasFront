@@ -7,13 +7,15 @@ import { GeneradorProgramaRoutingModule } from './generador-programa-routing.mod
 import { ProgramaComponent } from './pages/programa/programa.component';
 import { FormularioComponent } from './pages/formulario/formulario.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 @NgModule({
   declarations: [
     ProgramaComponent,
     FormularioComponent,
-    FileUploaderComponent
+    FileUploaderComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

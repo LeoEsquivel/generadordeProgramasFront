@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneradorProgramaService } from '../../../services/generador-programa.service';
 import { switchMap } from 'rxjs';
@@ -11,7 +11,7 @@ import { MenuEPUB } from '../../interfaces/responses-interfaces.interface';
 })
 export class FileUploaderComponent {
 
-  menuEPub !: MenuEPUB [];
+  @Output() menuEvent = new EventEmitter<MenuEPUB []>()
 
   archivoForm: FormGroup = this.fb.group({
     file      : [ '', [ Validators.required ] ],
@@ -42,7 +42,8 @@ export class FileUploaderComponent {
         )
         .subscribe({
           next: (menu) => {
-            this.menuEPub = menu;
+            this.menuEvent.emit(menu);
+            console.log(menu)
           }
         })
     } else {

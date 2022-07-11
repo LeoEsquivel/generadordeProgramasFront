@@ -16,10 +16,6 @@ export class FormularioComponent {
   activeChapter   !: string;
   selectedChapter !: string;
 
-  archivoForm: FormGroup = this.fb.group({
-    file      : [ '', [ Validators.required ] ],
-    fileSource: ['', [ Validators.required ] ]
-  });
 
   programaForm: FormGroup = this.fb.group({
     nombreCong    : [ '', [ Validators.required ] ],
@@ -73,39 +69,17 @@ export class FormularioComponent {
     this.getParticipantes(actividadControl)!.push( participanteFormGroup );
   }
 
+
   deleteParticipante( index: number, actividadControl: AbstractControl ) {
     this.getParticipantes(actividadControl).removeAt(index);
 
-    // form.removeAt(index)
   }
 
-  epubFileChange( fileInputEvent: any ) {
-    const file = fileInputEvent.target.files[0];
 
-    this.archivoForm.patchValue({
-      fileSource: file
-    })
+  updateMenu( menu: MenuEPUB[] ) {
+    this.menuEPub = menu;
   }
 
-  uploadFile() {
-    if( this.archivoForm.valid ) {
-      const files = new FormData();
-
-      files.append( 'file', this.archivoForm.get('fileSource')?.value)
-
-      this.gpService.uploadFile( files )
-        .pipe(
-          switchMap( ( menu ) => this.gpService.getMenuInfo())
-        )
-        .subscribe({
-          next: (menu) => {
-            this.menuEPub = menu;
-          }
-        })
-    } else {
-      console.log('No se ha agregado ningun archivo')
-    }
-  }
 
   obtenerInformacion( chapter: string, name: string ) {
     this.activeChapter = chapter
