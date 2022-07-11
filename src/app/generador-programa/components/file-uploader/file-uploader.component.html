@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col">
+    <form [formGroup]="archivoForm" (ngSubmit)="uploadFile()">
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Sube el archivo EPUB</label>
+        <input
+          (change)="epubFileChange($event)"
+          accept=".epub"
+          type="file"
+          formControlName="file"
+          class="form-control"
+          id="formFile"
+        />
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            type="submit"
+            class="btn btn-primary float-end"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo"
+            aria-expanded="false"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
