@@ -43,7 +43,6 @@ export class FileUploaderComponent {
         .subscribe({
           next: (menu) => {
             this.menuEvent.emit(menu);
-            console.log(menu)
           }
         })
     } else {
