@@ -1,9 +1,6 @@
 <div class="row">
   <div class="col mt-4">
-    <!-- <button class="btn btn-primary"
-            (click)="obtenerInformacion('loquesea', 'asd')"
-      >Obtener Datos
-    </button> -->
+
     <div class="accordion" id="accordion">
 
       <div class="accordion-item">
@@ -51,182 +48,26 @@
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
           <div class="accordion-body">
-
-            <div class="row">
-              <div class="col">
-                  <form [formGroup]="programaForm">
-                      <h3>Información basica del programa</h3>
-
-                      <div class="row">
-
-                        <div class="col-6">
-
-
-                          <label for="nombreCong" class="form-label">Nombre de la congregación</label>
-                          <input type="text"
-                                 class="form-control"
-                                 id="nombreCong"
-                                 placeholder="Nombre de la congregación: Cong. Chapultepec"
-                                 formControlName="nombreCong"
-                                 required>
-                        </div>
-
-                        <div class="col-3">
-                          <label for="presidente" class="form-label">Presidente</label>
-                          <input type="text"
-                                 class="form-control"
-                                 id="presidente"
-                                 placeholder="Nombre de quien preside"
-                                 formControlName="presidente"
-                                 required>
-                        </div>
-
-                        <div class="col-3">
-                          <div class="col mb-2">
-                            <label for="oracionInicial" class="form-label">Oracion Inicial</label>
-                            <input type="text"
-                                 class="form-control"
-                                 id="oracionInicial"
-                                 placeholder=""
-                                 formControlName="oracionInicial"
-                                 required>
-                          </div>
-                          <div class="col">
-                            <label for="oracionFinal" class="form-label">Oracion Final</label>
-                            <input type="text"
-                                 class="form-control"
-                                 id="oracionFinal"
-                                 placeholder=""
-                                 formControlName="oracionFinal"
-                                 required>
-                          </div>
-                        </div>
-
-                      </div>
-                      <div class="row mb-2">
-
-                        <div class="col">
-                          <div class="form-text">Fecha</div>
-
-                          <input type="text"
-                                 class="form-control"
-                                 placeholder="Fecha"
-                                 formControlName="fecha"
-                                 required>
-                        </div>
-
-                        <div class="col">
-                          <div class="form-text">Texto</div>
-                          <input type="text"
-                                 class="form-control"
-                                 placeholder="Texto"
-                                 formControlName="textoInicial"
-                                 required>
-                        </div>
-
-                      </div>
-                      <hr>
-                      <div class="mb-2">
-
-                        <h3>Secciones</h3>
-
-                        <div class="col mb-4" formArrayName="secciones"
-                             *ngFor="let seccion of getSecciones().controls; let i = index">
-
-                            <div class="col" [formGroupName]="i">
-
-                            <h6>{{ seccion.get('nombreSeccion')?.value || 'SECCIÓN INICIAL' }}</h6>
-
-                            <div class="col" formArrayName="actividades"
-                                 *ngFor="let actividad of getActividades(seccion).controls; let j = index">
-
-                                <div [formGroupName]="j" class="col mb-3">
-
-                                  <div class="row mb-3">
-                                    <div class="col-6">
-                                      <div class="form-text">Actividad</div>
-                                      <input type="text"
-                                             class="form-control"
-                                             formControlName="nombreActividad"
-                                             placeholder="Primera conversación"
-                                             required>
-                                    </div>
-
-                                    <div class="col-2">
-                                      <div class="form-text">Tiempo</div>
-                                      <input type="number"
-                                             class="form-control"
-                                             formControlName="tiempo"
-                                             placeholder="Primera conversación"
-                                             required>
-                                    </div>
-
-                                    <div class="col-4">
-                                      <div class="form-text">Zona</div>
-                                      <input type="text"
-                                             class="form-control"
-                                             formControlName="zona"
-                                             placeholder="Auditorio principal"
-                                             required>
-                                    </div>
-                                  </div>
-
-
-                                  <div class="col mb-3">
-                                    <button class="btn btn-primary" (click)="addParticipante(actividad)">Agregar Participante</button>
-                                  </div>
-                                  <hr>
-                                  <div class="row" formArrayName="participantes"
-                                       *ngFor="let participantes of getParticipantes(actividad).controls; let k = index">
-
-                                      <div [formGroupName]="k" class="row mb-2">
-
-                                        <div class="row-4">
-
-                                          <input type="text"
-                                                 formControlName="nombre"
-                                                 class="form-control"
-                                                 id="participante"
-                                                 >
-
-                                        </div>
-                                        <div class="row-2">
-                                          <button class="btn btn-danger float-end" (click)="deleteParticipante(k, actividad)">Borrar</button>
-                                        </div>
-
-                                      </div>
-
-                                  </div>
-
-                                </div>
-                                <hr>
-
-
-                            </div>
-
-                          </div>
-                        </div>
-
-                      </div>
-
-                      <div class="mb-2"></div>
-                      <div class="mb-2"></div>
-                      <div class="mb-2"></div>
-
-
-                  </form>
-
-              </div>
-            </div>
-
+            <app-formulario-programa
+              *ngIf="subPrograma"
+              [programa]="subPrograma"
+              (subprograma)="addPrograma( $event )"
+            ></app-formulario-programa>
           </div>
         </div>
       </div>
 
     </div>
 
+    <hr><hr>
+    <div class="col mb-3">
+
+      <pre *ngFor="let subPro of programaFinal">
+        {{ subPro | json }}
+      </pre>
+
+    </div>
 
   </div>
 </div>
 
-<pre>{{ programaForm.value | json }}</pre>
