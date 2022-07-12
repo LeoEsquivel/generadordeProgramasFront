@@ -1,0 +1,196 @@
+<div class="row">
+  <div class="col">
+      <form [formGroup]="programaForm"
+            (ngSubmit)="addProgram()">
+          <h3>Información basica del programa</h3>
+
+          <div class="row">
+
+            <div class="col-6">
+
+              <label for="nombreCong" class="form-label">Nombre de la congregación</label>
+              <input type="text"
+                     class="form-control"
+                     id="nombreCong"
+                     placeholder="Cong. Chapultepec"
+                     formControlName="nombreCong"
+                     required>
+            </div>
+
+            <div class="col-3">
+              <label for="presidente" class="form-label">Presidente</label>
+              <input type="text"
+                     class="form-control"
+                     id="presidente"
+                     placeholder="Nombre de quien preside"
+                     formControlName="presidente"
+                     required>
+            </div>
+
+            <div class="col-3">
+              <div class="col mb-2">
+                <label for="oracionInicial" class="form-label">Oracion Inicial</label>
+                <input type="text"
+                     class="form-control"
+                     id="oracionInicial"
+                     formControlName="oracionInicial"
+                     placeholder="Nombre del orador inicial"
+                     required>
+              </div>
+              <div class="col">
+                <label for="oracionFinal" class="form-label">Oracion Final</label>
+                <input type="text"
+                     class="form-control"
+                     id="oracionFinal"
+                     formControlName="oracionFinal"
+                     placeholder="Nombre del orador final"
+                     required>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row mb-2">
+
+            <div class="col-6">
+              <div class="form-text">Fecha</div>
+
+              <input type="text"
+                     class="form-control"
+                     placeholder="Fecha del programa"
+                     formControlName="fecha"
+                     required>
+            </div>
+
+            <div class="col-4">
+              <div class="form-text">Texto</div>
+              <input type="text"
+                     class="form-control"
+                     placeholder="Texto del programa"
+                     formControlName="textoInicial"
+                     required>
+            </div>
+
+            <div class="col-2">
+              <div class="form-text">Hora de inicio</div>
+              <input type="time"
+                     class="form-control"
+                     placeholder="Hora de inicio de la reunión"
+                     formControlName="horaInicio"
+                     required>
+            </div>
+
+          </div>
+          <hr>
+          <div class="mb-2">
+
+            <h3>Secciones</h3>
+
+            <div class="col mb-4" formArrayName="secciones"
+                 *ngFor="let seccion of getSecciones().controls; let i = index">
+
+                <div class="col" [formGroupName]="i">
+
+                <h6>{{ seccion.get('nombreSeccion')?.value || 'SECCIÓN INICIAL' }}</h6>
+
+                <div class="col" formArrayName="actividades"
+                     *ngFor="let actividad of getActividades(seccion).controls; let j = index">
+
+                    <div [formGroupName]="j" class="col mb-3">
+
+                      <div class="row mb-3">
+                        <div class="col-6">
+                          <div class="form-text">Actividad</div>
+                          <input type="text"
+                                 class="form-control"
+                                 formControlName="nombreActividad"
+                                 placeholder="Primera conversación"
+                                 required>
+                        </div>
+
+                        <div class="col-2">
+                          <div class="form-text">Tiempo</div>
+                          <input type="number"
+                                 class="form-control"
+                                 formControlName="tiempo"
+                                 placeholder="Minutos"
+                                 required>
+                        </div>
+
+                        <div class="col-4">
+                          <div class="form-text">Zona</div>
+                          <input type="text"
+                                 class="form-control"
+                                 formControlName="zona"
+                                 placeholder="Auditorio principal"
+                                 required>
+                        </div>
+                      </div>
+
+
+                      <div class="col mb-3">
+                        <button class="btn btn-primary"
+                                (click)="addParticipante(actividad)"
+                                type="button">
+                              Agregar Participante
+                        </button>
+                      </div>
+
+                      <div class="col mb-3" formArrayName="participantes"
+                           *ngFor="let participantes of getParticipantes(actividad).controls; let k = index">
+
+                          <div [formGroupName]="k">
+
+                              <div class="col">
+                                <label for="participante" class="form-label">Participante </label>
+                                <small class="form-text">(En caso de ser dos, el primero se tomara como el principal, p.ej: Conductor/Lector)</small>
+
+                                <div class="row">
+
+                                  <div class="col">
+                                    <input type="text"
+                                           formControlName="nombre"
+                                           class="form-control"
+                                           id="participante">
+                                  </div>
+
+                                  <div class="col">
+                                    <button class="btn btn-danger"
+                                            (click)="deleteParticipante(k, actividad)"
+                                            type="button">
+                                          Borrar
+                                    </button>
+                                  </div>
+
+                                </div>
+
+                              </div>
+
+
+
+                          </div>
+
+                      </div>
+
+                    </div>
+                    <hr>
+
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col">
+            <button class="btn btn-primary"
+                    type="submit">
+              Guardar Programa
+            </button>
+          </div>
+
+      </form>
+
+  </div>
+</div>
