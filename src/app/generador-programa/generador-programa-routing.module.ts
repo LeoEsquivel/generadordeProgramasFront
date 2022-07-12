@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormularioComponent } from './pages/formulario/formulario.component';
+import { ProgramaComponent } from './pages/programa/programa.component';
 
 const routes: Routes = [
   {
@@ -11,9 +12,13 @@ const routes: Routes = [
         component: FormularioComponent
       },
       {
+        path: 'programa',
+        component: ProgramaComponent
+      },
+      {
         path: '**',
         redirectTo: ''
-      }
+      },
     ]
   }
 ];
