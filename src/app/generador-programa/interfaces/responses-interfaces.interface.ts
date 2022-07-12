@@ -1,9 +1,3 @@
-export interface UploadResponse {
-  file_name?: string;
-  msg       : string;
-  ok?       : boolean;
-}
-
 export interface MenuEPUB {
   _Menu__route?: string;
   _Menu__name? : string;
@@ -11,9 +5,16 @@ export interface MenuEPUB {
   extra?       : string;
 }
 
+export interface UploadResponse {
+  file_name?: string;
+  msg       : string;
+  ok?       : boolean;
+}
+
 export interface ProgramaResponse {
   _Programa__nombreCong  ?: string;
   _Programa__fecha       ?: string;
+  _Programa__horaInicio  ?: Date;
   _Programa__textoInicial?: string;
   _Programa__secciones   ?: ProgramaSeccion[];
   msg                    ?: string

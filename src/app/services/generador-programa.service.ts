@@ -40,8 +40,7 @@ export class GeneradorProgramaService {
   getProgramData( chapter: string ): Observable<ProgramaResponse> {
 
     const epubFile = localStorage.getItem('bookNameFile');
-    // const url = `${this._baseUrl}/generar-programa/${chapter}?book=${epubFile}`
-    const url = `${this._baseUrl}/generar-programa/202022321.xhtml?book=${epubFile}`
+    const url = `${this._baseUrl}/generar-programa/${chapter}?book=${epubFile}`
     return this.http.get<ProgramaResponse>( url )
       .pipe(
         catchError( err => of( err.error ))
