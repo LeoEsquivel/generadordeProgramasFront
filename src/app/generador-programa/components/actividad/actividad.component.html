@@ -1,0 +1,28 @@
+
+ <!-- Actividad con Estudiante/Ayudante-->
+ <div class="row">
+  <div class="col-4">
+    <div class="row">
+      <div class="col text-start">
+        <span>6:31
+          <span class="cr">
+            <span class="point">•</span>
+            {{ actividad.nombreActividad }} <span *ngIf="actividad.tiempo > 0" class="ms-1">({{ actividad.tiempo }} mins)</span>
+          </span>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-2 text-end">
+    <small *ngIf="actividad.participantes.length > 1"
+            class="subtexto">
+      Estudiante/Ayudante:
+    </small>
+  </div>
+
+  <div class="col-6 aling-items-end text-end">
+    <span *ngFor="let participante of actividad.participantes">{{ participante.nombre }} <span *ngIf="actividad.participantes.length > 1"></span> </span>
+  </div>
+</div>
