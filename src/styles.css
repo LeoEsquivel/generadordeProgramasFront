@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.subtexto {
+  color: darkgray;
+  font-size: 0.65em;
+  font-weight: bold;
+}
