@@ -42,6 +42,7 @@ export class FormularioComponent {
 
   addPrograma( subPrograma: Programa) {
     this.programaFinal.push( subPrograma );
+    this.gpService.sharingProgramaObservableData = this.programaFinal
   }
 
 

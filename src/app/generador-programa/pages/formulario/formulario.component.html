@@ -1,73 +1,92 @@
 <div class="row">
-  <div class="col mt-4">
-
-    <div class="accordion" id="accordion">
-
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Subir archivo EPUB
-          </button>
-
-        </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
-          <div class="accordion-body">
-
-            <app-file-uploader (menuEvent)="updateMenu($event)"></app-file-uploader>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Seleccionar capítulo
-          </button>
-
-        </h2>
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-          <div class="accordion-body">
-
-            <app-menu
-              [menuEPub]="menuEPub"
-              (selectedChapterInfo)="obtenerInformacion( $event )">
-            </app-menu>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Pre Programa <small class="mx-2" *ngIf="selectedChapter"> Capitulo seleccionado: {{ activeChapter }}</small>
-          </button>
-        </h2>
-        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
-          <div class="accordion-body">
-            <app-formulario-programa
-              *ngIf="subPrograma"
-              [programa]="subPrograma"
-              (subprograma)="addPrograma( $event )"
-            ></app-formulario-programa>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <hr><hr>
-    <div class="col mb-3">
-
-      <pre *ngFor="let subPro of programaFinal">
-        {{ subPro | json }}
-      </pre>
-
-    </div>
-
+  <div class="col">
+    <button class="btn btn-primary" type="button"
+            data-bs-toggle="collapse" data-bs-target=".multi-collapse"
+            aria-expanded="false" aria-controls="formulario programa">
+            Ver Programa
+    </button>
   </div>
 </div>
 
+<div class="col">
+  <div class="col">
+    <div class="collapse multi-collapse collapse show" id="formulario">
+      <div class="card card-body">
+        <div class="row">
+          <div class="col mt-4">
+
+            <div class="accordion" id="accordion">
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Subir archivo EPUB
+                  </button>
+
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                  <div class="accordion-body">
+
+                    <app-file-uploader (menuEvent)="updateMenu($event)"></app-file-uploader>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Seleccionar capítulo
+                  </button>
+
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+                  <div class="accordion-body">
+
+                    <app-menu
+                      [menuEPub]="menuEPub"
+                      (selectedChapterInfo)="obtenerInformacion( $event )">
+                    </app-menu>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Pre Programa <small class="mx-2" *ngIf="selectedChapter"> Capitulo seleccionado: {{ activeChapter }}</small>
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
+                  <div class="accordion-body">
+                    <app-formulario-programa
+                      *ngIf="subPrograma"
+                      [programa]="subPrograma"
+                      (subprograma)="addPrograma( $event )"
+                    ></app-formulario-programa>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="collapse multi-collapse" id="programa">
+      <div class="card card-body">
+        <!-- [programa]="programaFinal" -->
+        <!-- *ngIf="programaFinal.length > 0" -->
+        <app-programa
+        ></app-programa>
+      </div>
+    </div>
+  </div>
+</div>
