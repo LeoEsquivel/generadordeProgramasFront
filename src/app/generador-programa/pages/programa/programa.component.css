@@ -1,0 +1,27 @@
+hr.title {
+	border-top: 8px double #847f7f !important;
+  opacity: 100 !important;
+  text-align: center;
+}
+
+.titulo_seccion {
+  color: #FFF;
+  font-weight: 500;
+}
+
+.congName {
+  font-size: 1em !important;
+  display: flex;
+  align-self: end;
+}
+
+.encabezado {
+  font-weight: bold;
+  font-size: 1.875em;
+}
+
+.fecha {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+

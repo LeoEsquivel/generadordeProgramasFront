@@ -1,1 +1,104 @@
-<p>programa works!</p>
+<h2>Programa</h2>
+
+
+<div *ngIf="programa != null" class="container">
+
+  <div class="col">
+    <button (click)="downloadPDF()">Descargar</button>
+  </div>
+
+  <div id="contenido-programa">
+    <div class="col-12 my-3">
+      <div class="row">
+          <div class="col-4 text-start encabezado congName">
+            {{ programa[0].nombreCong | uppercase }}
+          </div>
+          <div class="col-8 text-end encabezado">
+            Programa para la reunión de entre semana
+          </div>
+      </div>
+      <hr class="title">
+    <div *ngFor="let subPrograma of programa;"
+          class="mb-5">
+      <div class="col-12 my-3">
+        <div class="row">
+            <div class="col-4 text-start fecha">
+              {{ subPrograma.fecha}} | {{ subPrograma.textoInicial }}
+            </div>
+            <div class="col text-end">
+                <small class="me-2 subtexto">Presidente:</small> {{ subPrograma.presidente }}
+            </div>
+        </div>
+      </div>
+
+
+      <!-- Seccion Inicial -->
+      <div class="my-3">
+
+        <div class="row">
+          <div class="col-auto text-start">
+            {{ horaInicial }}
+          </div>
+          <div class="col-6 text-start">
+            <li>{{ subPrograma.secciones[0].actividades[0].nombreActividad }}</li>
+          </div>
+          <div class="col text-end">
+            <small class="me-2 subtexto">Oración: </small> {{ subPrograma.oracionInicial }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-auto text-start"
+              >
+            {{ subPrograma.secciones[0].actividades[1].hora }}
+          </div>
+          <div class="col-6 text-start">
+            <li>{{ subPrograma.secciones[0].actividades[1].nombreActividad }} <span class="ms-1">({{ subPrograma.secciones[0].actividades[1].tiempo}} min)</span></li>
+          </div>
+        </div>
+
+      </div>
+      <!-- Fin Seccion inicial -->
+
+
+      <!-- Seccion: Tesoros de la biblia -->
+      <div class="my-3">
+          <div class="col-6 titulo_seccion ps-2" style="background-color: rgb(96, 96, 104);">
+            {{ subPrograma.secciones[1].nombreSeccion | uppercase }}
+          </div>
+
+          <app-actividad
+            *ngFor="let actividad of subPrograma.secciones[1].actividades"
+            [actividad]="actividad"
+          ></app-actividad>
+      </div>
+      <!-- Fin Seccion: Tesoros de la biblia -->
+
+
+      <!-- Seccion: Seamos mejores maestros -->
+      <div class="my-3">
+        <div class="col-6 titulo_seccion ps-2" style="background-color: rgb(211, 174, 39);">
+          {{ subPrograma.secciones[2].nombreSeccion | uppercase }}
+        </div>
+        <app-actividad
+            *ngFor="let actividad of subPrograma.secciones[2].actividades"
+            [actividad]="actividad"
+        ></app-actividad>
+      </div>
+      <!-- Fin Seccion: Seamos mejores maestros -->
+
+      <!-- Seccion: Nuestra Vida Cristiana -->
+      <div class="my-3">
+        <div class="col-6 titulo_seccion ps-2" style="background-color: rgb(168, 62, 24);">
+          {{ subPrograma.secciones[3].nombreSeccion | uppercase }}
+        </div>
+        <app-actividad
+            *ngFor="let actividad of subPrograma.secciones[3].actividades"
+            [actividad]="actividad"
+        ></app-actividad>
+      </div>
+      <!-- Fin Seccion: Nuestra Vida Cristiana -->
+
+    </div>
+
+</div>
