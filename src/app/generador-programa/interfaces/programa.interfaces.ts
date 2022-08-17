@@ -18,7 +18,8 @@ export interface Actividad {
   nombreActividad : string;
   tiempo          : number;
   zona            : string;
-  participantes  ?: Participante []
+  participantes   : Participante [];
+  hora           ?: Date
 }
 
 export interface Participante {

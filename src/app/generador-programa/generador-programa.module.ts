@@ -9,6 +9,7 @@ import { FormularioComponent } from './pages/formulario/formulario.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FormularioProgramaComponent } from './components/formulario-programa/formulario-programa.component';
+import { ActividadComponent } from './components/actividad/actividad.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FormularioProgramaComponent } from './components/formulario-programa/fo
     FormularioComponent,
     FileUploaderComponent,
     MenuComponent,
-    FormularioProgramaComponent
+    FormularioProgramaComponent,
+    ActividadComponent
   ],
   imports: [
     CommonModule,

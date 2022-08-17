@@ -24,7 +24,7 @@ export class FormularioProgramaComponent implements OnChanges {
     secciones     : this.fb.array([
 
       this.fb.group({
-        nombreSeccion: [ '', [ Validators.required ] ],
+        nombreSeccion: [ '' ],
         actividades  : this.fb.array([
 
           this.fb.group({
