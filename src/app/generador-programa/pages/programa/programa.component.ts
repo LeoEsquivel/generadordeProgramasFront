@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -13,8 +13,8 @@ import { Programa, Actividad } from '../../interfaces/programa.interfaces';
 export class ProgramaComponent {
 
   programa    !: Programa[]
-  horaInicial !: Date;
-  hora        !: Date;
+  horaInicial !: Date; //Mantener la hora inicial guardada
+  hora        !: Date; //Es la hora que enviamos y recibimos
 
 
 
@@ -325,14 +325,23 @@ export class ProgramaComponent {
         ]
       }
     ];
+
     this.horaInicial = this.programa[0].horaInicio;
+
     this.hora = this.programa[0].horaInicio;
-    console.log( this.hora )
+    this.hora = this.updateMinutes( this.programa[0].secciones[0].actividades[0] );
+
+    this.programa[0].secciones[0].actividades[1].hora = this.hora;
+    this.hora = this.updateMinutes( this.programa[0].secciones[0].actividades[1] );
   }
 
-  sumarMinutos( actividad: Actividad, tiempo: number ) {
-    // actividad.hora = new Date( this.hora.getTime() + (tiempo * 60000) )
-    // return new Date( actividad)
+  updateMinutes( activity?: Actividad ): Date {
+    this.hora = this.gpService.addMinutes( this.hora, activity?.tiempo || undefined );
+    return this.hora;
+  }
+
+  updateTime( updatedTime: Date ) {
+    this.hora = updatedTime;
   }
 
   downloadPDF() {

@@ -55,9 +55,9 @@ export class GeneradorProgramaService {
 
 
   getProgramData( chapter: string ): Observable<ProgramaResponse> {
-
     const epubFile = localStorage.getItem('bookNameFile');
     const url = `${this._baseUrl}/generar-programa/${chapter}?book=${epubFile}`
+
     return this.http.get<ProgramaResponse>( url )
       .pipe(
         catchError( err => of( err.error ))
@@ -65,6 +65,9 @@ export class GeneradorProgramaService {
 
   }
 
+  addMinutes( currentDate: Date, mins: number = 5 ): Date {
+    return new Date( currentDate.getTime() + mins * 60000 );
+  }
 
   private _saveLocalStorage( fileName: UploadResponse ) {
     localStorage.setItem('bookNameFile', fileName.file_name! )
