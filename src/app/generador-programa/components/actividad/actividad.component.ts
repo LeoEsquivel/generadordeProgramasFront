@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { GeneradorProgramaService } from 'src/app/services/generador-programa.service';
 import { Actividad } from '../../interfaces/programa.interfaces';
 
 @Component({
@@ -6,22 +7,24 @@ import { Actividad } from '../../interfaces/programa.interfaces';
   templateUrl: './actividad.component.html',
   styleUrls: ['./actividad.component.css']
 })
-export class ActividadComponent{
+export class ActividadComponent implements OnInit{
 
   @Input() actividad !: Actividad;
   @Input() hora      !: Date;
 
-  @Output() siguienteHora = new EventEmitter();
-  constructor() {
+  @Output() horaChange = new EventEmitter<Date>();
 
+  constructor( private gpService: GeneradorProgramaService ) {
   }
 
-  sumarMinutos() {
-    if( this.actividad.tiempo === 0 ){
-      this.siguienteHora.emit( this.hora.getTime() + 60000 )
-    } else {
-      this.siguienteHora.emit( this.hora.getTime() + ( this.actividad.tiempo * 60000) )
-    }
+  ngOnInit(): void {
+    this.actividad.hora = this.hora;
+    this.sumarMinutos()
+  }
+
+  sumarMinutos(): void{
+    this.hora = this.gpService.addMinutes( this.hora, this.actividad.tiempo );
+    this.horaChange.emit( this.hora );
   }
 
 
