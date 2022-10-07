@@ -3,6 +3,7 @@
 
 <div *ngIf="programa != null" class="container">
 
+  <!-- <pre>  {{ programa | json }} </pre> -->
   <div class="col">
     <button (click)="downloadPDF()">Descargar</button>
   </div>
@@ -18,8 +19,10 @@
           </div>
       </div>
       <hr class="title">
+
+    <!--Inicio generación de programa -->
     <div *ngFor="let subPrograma of programa;"
-          class="mb-5">
+          class="mb-5"> {{ resetHour() }}
       <div class="col-12 my-3">
         <div class="row">
             <div class="col-4 text-start fecha">
@@ -35,9 +38,10 @@
       <!-- Seccion Inicial -->
       <div class="my-3">
 
+        <!--Actividad inicial: Canción -->
         <div class="row">
           <div class="col-auto text-start time">
-            {{ horaInicial | date: 'hh:mm'}}
+            {{ horaInicial | date: 'hh:mm' }} {{ updateMinutes() }}
           </div>
           <div class="col-6 text-start">
             <li>{{ subPrograma.secciones[0].actividades[0].nombreActividad }}</li>
@@ -47,8 +51,10 @@
           </div>
         </div>
 
+        <!--Segunda actividad: Horación-->
         <div class="row">
           <div class="col-auto text-start time">
+            {{ updateMinutes(subPrograma.secciones[0].actividades[1]) }}
             {{ subPrograma.secciones[0].actividades[1].hora | date: 'hh:mm' }}
           </div>
           <div class="col-6 text-start">
