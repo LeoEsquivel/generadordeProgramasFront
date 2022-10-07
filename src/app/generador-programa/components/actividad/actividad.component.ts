@@ -19,14 +19,12 @@ export class ActividadComponent implements OnInit{
 
   ngOnInit(): void {
     this.actividad.hora = this.hora;
-    this.sumarMinutos()
+    this.sumarMinutos();
   }
 
   sumarMinutos(): void{
     this.hora = this.gpService.addMinutes( this.hora, this.actividad.tiempo );
     this.horaChange.emit( this.hora );
   }
-
-
 
 }

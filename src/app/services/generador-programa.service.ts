@@ -65,8 +65,8 @@ export class GeneradorProgramaService {
 
   }
 
-  addMinutes( currentDate: Date, mins: number = 5 ): Date {
-    return new Date( currentDate.getTime() + mins * 60000 );
+  addMinutes( currentTime: Date, mins: number = 5 ): Date {
+    return new Date( currentTime.getTime() + mins * 60000 );
   }
 
   private _saveLocalStorage( fileName: UploadResponse ) {
