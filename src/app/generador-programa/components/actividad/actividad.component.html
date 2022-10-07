@@ -1,17 +1,17 @@
 
  <!-- Actividad con Estudiante/Ayudante-->
  <div class="row">
-  <div class="col-4">
-    <div class="row">
-      <div class="col text-start">
-        <span> {{ hora | date: 'hh:mm' }}
-          <span class="cr">
-            <span class="point">•</span>
-            {{ actividad.nombreActividad }} <span *ngIf="actividad.tiempo > 0" class="ms-1">({{ actividad.tiempo }} mins)</span>
-          </span>
-        </span>
-      </div>
 
+  <div class="col-4">
+    <div class="d-flex aling-items-center">
+        <div class="align-self-center"> {{ actividad.hora | date: 'hh:mm' }}</div>
+        <div class="align-self-center ps-3 py-1">
+          <li> {{ actividad.nombreActividad }}
+            <span *ngIf="actividad.tiempo > 0" class="ms-1">
+              ({{ actividad.tiempo }} mins)
+            </span>
+        </li>
+        </div>
     </div>
   </div>
 
