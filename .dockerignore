@@ -1,0 +1,10 @@
+.angular
+.git
+.vscode
+.editorconfig
+.gitignore
+
+*.md
+
+/node_modules
+/e2e
