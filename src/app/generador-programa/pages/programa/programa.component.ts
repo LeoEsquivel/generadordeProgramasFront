@@ -329,15 +329,18 @@ export class ProgramaComponent {
     this.horaInicial = this.programa[0].horaInicio;
 
     this.hora = this.programa[0].horaInicio;
-    this.hora = this.updateMinutes( this.programa[0].secciones[0].actividades[0] );
-
-    this.programa[0].secciones[0].actividades[1].hora = this.hora;
-    this.hora = this.updateMinutes( this.programa[0].secciones[0].actividades[1] );
   }
 
-  updateMinutes( activity?: Actividad ): Date {
-    this.hora = this.gpService.addMinutes( this.hora, activity?.tiempo || undefined );
-    return this.hora;
+  resetHour() {
+    this.hora = this.horaInicial
+  }
+
+  updateMinutes( activity?: Actividad ) {
+    if (activity) {
+      activity.hora = this.hora;
+    }
+    const updatedTime = this.gpService.addMinutes( this.hora, activity?.tiempo );
+    this.hora = updatedTime;
   }
 
   updateTime( updatedTime: Date ) {
